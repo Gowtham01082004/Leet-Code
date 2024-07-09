@@ -1,20 +1,13 @@
 class Solution {
     public String defangIPaddr(String address) {
-        //String s="1.1.1.1";
-		String[] word=address.split("");
-		//System.out.println(Arrays.toString(word));
-		String ans="";
-		for (int i = 0; i < word.length; i++) {
-			String ch=word[i];
-			if(ch.equals(".")){
-				ans=ans+"[.]";
-			}
-			else{
-				ans=ans+ch;
-			}
-			
-		}
-		 return ans;
+        StringBuilder ans = new StringBuilder();
+        for(int i = 0 ; i < address.length() ; i++){
+            if(address.charAt(i) == '.'){
+            ans.append("[.]");
+            }
+            else    ans.append(address.charAt(i));
         
+    }
+    return ans.toString();
     }
 }
