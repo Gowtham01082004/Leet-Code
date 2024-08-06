@@ -5,7 +5,7 @@ class Solution {
         }
         
         int reversed = 0;
-        int original = x;
+       
         
      
         while (x > reversed) {
