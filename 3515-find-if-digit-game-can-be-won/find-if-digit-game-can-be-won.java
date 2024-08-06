@@ -10,9 +10,6 @@ class Solution {
             ssum=ssum+nums[i];
         }
        }
-       if(dsum==ssum){
-        return false;
-       }
-       return true;
+      return ssum!=dsum;
     }
 }
