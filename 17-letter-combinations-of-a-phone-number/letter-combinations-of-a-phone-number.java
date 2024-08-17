@@ -14,9 +14,9 @@ class Solution {
             return;
         }
         int n = Character.getNumericValue(digits.charAt(i));
-        if (n < 0 || n > 9) {
-            return;
-        }
+        // if (n < 0 || n > 9) {
+        //     return;
+        // }
         for(int j=0;j<arr[n].length();j++){
             combo(digits,ls,str+arr[n].charAt(j),i+1);
         }
