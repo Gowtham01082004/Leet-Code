@@ -1,20 +1,15 @@
 class Solution {
     public int countGoodRectangles(int[][] rectangles) {
-        int ans[]=new int[rectangles.length];
-        for(int i=0;i<rectangles.length;i++){
-            int min=rectangles[i][0];
-            for(int j=0;j<rectangles[i].length;j++){
-                 if(min>rectangles[i][j]){
-                    min=rectangles[i][j];
-                 }
-            }
-            ans[i]=min;
-        }
+        int maxn=0;
+       
         int count=0;
-        Arrays.sort(ans);
-        int t=ans[ans.length-1];
-        for(int i=0;i<ans.length;i++){
-            if(ans[i]==t){
+        for(int i=0;i<rectangles.length;i++){
+           int min=Math.min(rectangles[i][0],rectangles[i][1]);
+            if(min > maxn){
+                maxn=min;
+                count=1;
+            }
+            else  if(min==maxn){
                 count++;
             }
         }
