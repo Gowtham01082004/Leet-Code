@@ -1,30 +1,28 @@
-import java.util.*;
-
 class Solution {
     public int[] findMissingAndRepeatedValues(int[][] grid) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        
-        // Count frequencies
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                int num = grid[i][j];
-                map.put(num, map.getOrDefault(num, 0) + 1);
-            }
-        }
-
         int n = grid.length;
-        int repeated = 0, missing = 0;
+        int N = n * n;
 
-        // Check from 1 to n*n
-        for (int i = 1; i <= n * n; i++) {
-            int freq = map.getOrDefault(i, 0);
-            if (freq == 2) {
-                repeated = i;
-            } else if (freq == 0) {
-                missing = i;
+        long sum = (long) N * (N + 1) / 2;
+        long squareSum = (long) N * (N + 1) * (2 * N + 1) / 6;
+
+        long sumGrid = 0, squareSumGrid = 0;
+
+        for (int[] row : grid) {
+            for (int num : row) {
+                sumGrid += num;
+                squareSumGrid += (long) num * num;
             }
         }
 
-        return new int[]{repeated, missing};
+        long diff = sumGrid - sum; // a - b
+        long squareDiff = squareSumGrid - squareSum; // a^2 - b^2
+
+        long sum_ab = squareDiff / diff; // a + b
+
+        int a = (int) ((diff + sum_ab) / 2);
+        int b = (int) (sum_ab - a);
+
+        return new int[]{a, b};
     }
 }
